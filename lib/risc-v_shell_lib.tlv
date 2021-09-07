@@ -133,9 +133,9 @@ m4+definitions(['
    $rf1_rd_index2[\$clog2(_entries)-1:0] = m4_argn(11, $@);
    
    /xreg[m4_eval(_entries-1):0]
-      $wr = /top$rf1_wr_en && (/top$rf1_wr_index == #xreg);
-      <<1$value[_width-1:0] = /top$_reset ? #xreg              :
-                                 $wr      ? /top$rf1_wr_data :
+      $wr = |cpu$rf1_wr_en && (|cpu$rf1_wr_index == #xreg);
+      <<1$value[_width-1:0] = |cpu$_reset ? #xreg              :
+                                 $wr      ? |cpu$rf1_wr_data :
                                             $RETAIN;
    
    $_port2_data[_width-1:0]  =  $rf1_rd_en1 ? /xreg[$rf1_rd_index1]$value : 'X;
@@ -192,9 +192,9 @@ m4+definitions(['
    $dmem1_rd_en = $_port2_en;
    
    /dmem[m4_eval(_entries-1):0]
-      $wr = /top$dmem1_wr_en && (/top$dmem1_addr == #dmem);
-      <<1$value[_width-1:0] = /top$_reset ? 0                 :
-                              $wr         ? /top$dmem1_wr_data :
+      $wr = |cpu$dmem1_wr_en && (|cpu$dmem1_addr == #dmem);
+      <<1$value[_width-1:0] = |cpu$_reset ? 0                 :
+                              $wr         ? |cpu$dmem1_wr_data :
                                             $RETAIN;
    
    $_port2_data[_width-1:0] = $dmem1_rd_en ? /dmem[$dmem1_addr]$value : 'X;
