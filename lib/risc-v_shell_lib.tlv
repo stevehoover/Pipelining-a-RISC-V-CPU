@@ -4,10 +4,8 @@
 
 // Configuration for WARP-V definitions.
 m4+definitions(['
-   // This code can be found in: https://github.com/stevehoover/LF-Building-a-RISC-V-CPU-Core/risc-v_shell.tlv
-   
-   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/Pipelining-a-RISC-V-CPU/main/lib/risc-v_shell_lib.tlv'])
    m4_include_lib(['https://raw.githubusercontent.com/stevehoover/tlv_lib/master/fundamentals_lib.tlv'])
+
    // Access a signal and if it is missing and expected to exist, add it to the missing signals list.
    m4_func(siggen, sig_name, sig_path, expected, ['
       m4_def(sigs_list, m4_quote(m4_sigs_list)[', ']m4_sig_path['$']m4_sig_name)
