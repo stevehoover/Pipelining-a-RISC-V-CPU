@@ -4,7 +4,8 @@
 
 // Configuration for WARP-V definitions.
 m4+definitions(['
-   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/tlv_lib/master/fundamentals_lib.tlv'])
+   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/warp-v_includes/1d1023ccf8e7b0a8cf8e8fc4f0a823ebb61008e3/risc-v_defs.tlv'])
+   m4_include_lib(['https://raw.githubusercontent.com/stevehoover/tlv_lib/db48b4c22c4846c900b3fa307e87d9744424d916/fundamentals_lib.tlv'])
 
    // Access a signal and if it is missing and expected to exist, add it to the missing signals list.
    m4_func(siggen, sig_name, sig_path, expected, ['
