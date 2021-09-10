@@ -17,7 +17,7 @@
                      >>1$is_jal ? >>1$br_tgt_pc :
                      >>1$is_jalr ? >>1$jalr_tgt_pc :
                      >>1$inc_pc;
-         
+      @1
          
          // Next PC
          
@@ -148,10 +148,12 @@
          $taken_br =
              $is_blt  ? ($src1_value <  $src2_value) ^ ($src1_value[31] != $src2_value[31]) :
              $is_bge  ? ($src1_value >= $src2_value) ^ ($src1_value[31] != $src2_value[31]) :
-             //$is_beq  ? $src1_value == $src2_value :
-             //$is_bne  ? $src1_value != $src2_value :
-             //$is_bltu ? $src1_value <  $src2_value :
-             //$is_bgeu ? $src1_value >= $src2_value :
+             /*
+             $is_beq  ? $src1_value == $src2_value :
+             $is_bne  ? $src1_value != $src2_value :
+             $is_bltu ? $src1_value <  $src2_value :
+             $is_bgeu ? $src1_value >= $src2_value :
+             */
                         1'b0;
          
          $br_tgt_pc[31:0] = $pc + $imm;
@@ -165,7 +167,7 @@
          
       
       // Reg. File (read and write)
-      m4+rf(@0, @0,
+      m4+rf(@1, @1,
          $reset,
          $rd_valid && ($rd != 0),
          $rd,
@@ -176,7 +178,7 @@
          $rs2_valid,
          $rs2,
          $src2_value)
-      @0
+      @1
          m4+dmem(
             $reset,
             $result[6:2],
@@ -184,6 +186,6 @@
             $src2_value[31:0],
             $is_load,
             $ld_data)
-         m4+cpu_viz(1)  // cpu_viz(show_viz_in_diagram)
+         m4+cpu_viz(0)  // cpu_viz(show_viz_in_diagram)
 \SV
    endmodule
