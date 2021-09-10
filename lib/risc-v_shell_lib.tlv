@@ -112,7 +112,7 @@ m4+definitions(['
      m4_asm(ADDI, x29, x0, 1)
      // Terminate with success condition (regardless of correctness of register values):
      m4_asm(ADDI, x30, x0, 1)
-     m4_asm(JAL, x0, 0) // Done. Jump to itself (infinite loop). (Up to 20-bit signed immediate plus implicit 0 bit (unlike JALR) provides byte address; last immediate bit should also be 0)
+     m4_asm(BGE, x0, x0, 0) // Done. Jump to itself (infinite loop). (Up to 20-bit signed immediate plus implicit 0 bit (unlike JALR) provides byte address; last immediate bit should also be 0)
      
      m4_define(['M4_VIZ_BASE'], 16)   // (Note that immediate values are shown in disassembled instructions in binary and signed decimal in decoder regardless of this setting.)
 
